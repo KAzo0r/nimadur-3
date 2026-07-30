@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="uz" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon.uz - Onlayn Xaridlar: Elektronika, Kiyim-kechak, Kitoblar va boshqalar</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        amazon_blue: {
+                            light: '#232f3e',
+                            DEFAULT: '#131921',
+                        },
+                        amazon_yellow: {
+                            DEFAULT: '#febd69',
+                            hover: '#f3a847',
+                        },
+                        amazon_orange: {
+                            DEFAULT: '#e47911',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom Scrollbar for Horizontal Product Rows */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-200">
+
+    <!-- TOP HEADER -->
+    <header class="bg-amazon_blue text-white sticky top-0 z-50">
+        <!-- Main Navbar -->
+        <div class="flex items-center justify-between p-2 space-x-2 max-w-[1500px] mx-auto">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center px-2 py-1 border border-transparent hover:border-white rounded-sm">
+                <span class="text-2xl font-bold tracking-tight text-white flex items-center">
+                    amazon<span class="text-amazon_yellow text-sm font-semibold ml-0.5">.uz</span>
+                </span>
+            </a>
+
+            <!-- Delivery Location -->
+            <div class="hidden md:flex items-center px-2 py-1 border border-transparent hover:border-white rounded-sm cursor-pointer">
+                <i class="fa-solid fa-location-dot text-lg mr-2 text-gray-300"></i>
+                <div class="text-xs">
+                    <p class="text-gray-400">Yetkazib berish joyi:</p>
+                    <p class="font-bold text-sm">Toshkent, O'zbekiston</p>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="flex flex-grow items-center h-10 rounded-md overflow-hidden bg-white dark:bg-gray-800">
+                <select class="h-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-xs px-2 border-r border-gray-300 dark:border-gray-600 outline-none cursor-pointer">
+                    <option>Barchasi</option>
+                    <option>Elektronika</option>
+                    <option>Kiyim-kechak</option>
+                    <option>Uy va oshxona</option>
+                    <option>Kitoblar</option>
+                    <option>Go'zallik</option>
+                </select>
+                <input type="text" class="h-full flex-grow px-4 text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 outline-none text-sm" placeholder="Amazon bo'ylab qidirish...">
+                <button class="h-full px-5 bg-amazon_yellow hover:bg-amazon_yellow-hover text-gray-900 flex items-center justify-center transition">
+                    <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Language & Currency -->
+            <div class="hidden lg:flex items-center px-2 py-1 border border-transparent hover:border-white rounded-sm cursor-pointer space-x-1">
+                <span class="text-xs font-bold">UZ</span>
+                <i class="fa-solid fa-caret-down text-xs text-gray-400"></i>
+            </div>
+
+            <!-- Dark Mode Toggle -->
+            <button id="theme-toggle" class="p-2 border border-transparent hover:border-white rounded-sm text-amazon_yellow">
+                <i id="theme-icon" class="fa-solid fa-moon text-lg"></i>
+            </button>
+
+            <!-- Account & Orders -->
+            <div class="flex items-center px-2 py-1 border border-transparent hover:border-white rounded-sm cursor-pointer">
+                <div class="text-xs">
+                    <p class="text-gray-300">Salom, Kirish</p>
+                    <p class="font-bold text-sm flex items-center">Hisob va Buyurtmalar <i class="fa-solid fa-caret-down text-xs ml-1 text-gray-400"></i></p>
+                </div>
+            </div>
+
+            <!-- Cart -->
+            <a href="#" class="flex items-center px-2 py-1 border border-transparent hover:border-white rounded-sm relative">
+                <div class="relative">
+                    <i class="fa-solid fa-cart-shopping text-2xl text-white"></i>
+                    <span class="absolute -top-1 right-1/2 translate-x-1/2 bg-amazon_yellow text-gray-900 font-bold rounded-full h-5 w-5 text-xs flex items-center justify-center">3</span>
+                </div>
+                <span class="hidden sm:inline font-bold text-sm mt-2 ml-1">Savat</span>
+            </a>
+        </div>
+
+        <!-- Sub Navbar / Categories -->
+        <div class="bg-amazon_blue-light px-4 py-1.5 text-sm flex items-center space-x-4 overflow-x-auto no-scrollbar border-t border-gray-700">
+            <button class="flex items-center font-bold hover:text-amazon_yellow transition">
+                <i class="fa-solid fa-bars text-lg mr-1.5"></i> Barchasi
+            </button>
+            <a href="#" class="whitespace-nowrap hover:text-amazon_yellow transition">Bugungi Chegirmalar</a>
+            <a href="#" class="whitespace-nowrap hover:text-amazon_yellow transition">Mijozlarga Xizmat Ko'rsatish</a>
+            <a href="#" class="whitespace-nowrap hover:text-amazon_yellow transition">Sohvg'a Kartalari</a>
+            <a href="#" class="whitespace-nowrap hover:text-amazon_yellow transition">Sotish</a>
+            <a href="#" class="whitespace-nowrap hover:text-amazon_yellow transition">Smartfonlar</a>
+            <a href="#" class="whitespace-nowrap hover:text-amazon_yellow transition">Noutbuklar</a>
+            <a href="#" class="whitespace-nowrap hover:text-amazon_yellow transition">Moda va Kiyimlar</a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="max-w-[1500px] mx-auto relative pb-12">
+        
+        <!-- HERO CAROUSEL BANNER -->
+        <div class="relative w-full">
+            <div class="w-full h-[250px] sm:h-[350px] md:h-[450px] overflow-hidden relative">
+                <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1600&q=80" class="w-full h-full object-cover" alt="Banner 1">
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-100 dark:from-gray-900 via-transparent to-transparent"></div>
+            </div>
+        </div>
+
+        <!-- GRID CARDS OVERLAYING HERO BANNER -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 -mt-20 sm:-mt-40 relative z-10">
+            
+            <!-- Card 1 -->
+            <div class="bg-white dark:bg-gray-800 p-5 rounded-md shadow-md flex flex-col justify-between">
+                <h2 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Elektronika jihozlari</h2>
+                <div class="grid grid-cols-2 gap-2 mb-4">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=300&q=80" class="w-full h-28 object-cover rounded" alt="Quloqchin">
+                        <p class="text-xs font-semibold mt-1">Quloqchinlar</p>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=300&q=80" class="w-full h-28 object-cover rounded" alt="Soat">
+                        <p class="text-xs font-semibold mt-1">Aqlli soatlar</p>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=300&q=80" class="w-full h-28 object-cover rounded" alt="Noutbuk">
+                        <p class="text-xs font-semibold mt-1">Noutbuklar</p>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&q=80" class="w-full h-28 object-cover rounded" alt="Telefon">
+                        <p class="text-xs font-semibold mt-1">Smartfonlar</p>
+                    </div>
+                </div>
+                <a href="#" class="text-blue-600 dark:text-blue-400 text-sm font-semibold hover:underline">Barchasini ko'rish</a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white dark:bg-gray-800 p-5 rounded-md shadow-md flex flex-col justify-between">
+                <h2 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Uy va turmush buyumlari</h2>
+                <div class="grid grid-cols-2 gap-2 mb-4">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=300&q=80" class="w-full h-28 object-cover rounded" alt="Mebel">
+                        <p class="text-xs font-semibold mt-1">Mebellar</p>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=300&q=80" class="w-full h-28 object-cover rounded" alt="Dekor">
+                        <p class="text-xs font-semibold mt-1">Uy dekori</p>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=300&q=80" class="w-full h-28 object-cover rounded" alt="Oshxona">
+                        <p class="text-xs font-semibold mt-1">Oshxona</p>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=300&q=80" class="w-full h-28 object-cover rounded" alt="Yoritgich">
+                        <p class="text-xs font-semibold mt-1">Yoritgichlar</p>
+                    </div>
+                </div>
+                <a href="#" class="text-blue-600 dark:text-blue-400 text-sm font-semibold hover:underline">Batafsil ma'lumot</a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white dark:bg-gray-800 p-5 rounded-md shadow-md flex flex-col justify-between">
+                <h2 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Zamonaviy Moda</h2>
+                <div class="grid grid-cols-2 gap-2 mb-4">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=300&q=80" class="w-full h-28 object-cover rounded" alt="Erkaklar">
+                        <p class="text-xs font-semibold mt-1">Erkaklar kiyimi</p>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=300&q=80" class="w-full h-28 object-cover rounded" alt="Ayollar">
+                        <p class="text-xs font-semibold mt-1">Ayollar kiyimi</p>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=300&q=80" class="w-full h-28 object-cover rounded" alt="Poyabzal">
+                        <p class="text-xs font-semibold mt-1">Poyabzallar</p>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=300&q=80" class="w-full h-28 object-cover rounded" alt="Aksessuar">
+                        <p class="text-xs font-semibold mt-1">Aksessuarlar</p>
+                    </div>
+                </div>
+                <a href="#" class="text-blue-600 dark:text-blue-400 text-sm font-semibold hover:underline">Kolleksiyani ko'rish</a>
+            </div>
+
+            <!-- Card 4 (Sign-in / Offer) -->
+            <div class="bg-white dark:bg-gray-800 p-5 rounded-md shadow-md flex flex-col justify-between">
+                <div>
+                    <h2 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Xariddan rohatlaning</h2>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Eng yaxshi takliflar va shaxsiy tavsiyalarni olish uchun hisobingizga kiring.</p>
+                    <button class="w-full bg-amazon_yellow hover:bg-amazon_yellow-hover text-gray-900 font-bold py-2 rounded-md transition shadow-sm mb-4">
+                        Xavfsiz Kirish
+                    </button>
+                </div>
+                <div class="border-t border-gray-200 dark:border-gray-700 pt-3">
+                    <img src="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?auto=format&fit=crop&w=400&q=80" class="w-full h-32 object-cover rounded mb-2" alt="Aksiya">
+                    <span class="text-xs text-red-600 font-bold">50% gacha Chegirma!</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- HORIZONTAL PRODUCTS CAROUSEL 1 -->
+        <div class="bg-white dark:bg-gray-800 p-5 mt-6 mx-4 rounded-md shadow-md">
+            <h2 class="text-xl font-bold mb-4 text-gray-900 dark:text-white flex items-center">
+                Bugungi eng yaxshi chegirmalar 
+                <span class="ml-3 text-xs text-red-500 font-normal">Tugashiga: 05:42:10</span>
+            </h2>
+
+            <div class="flex space-x-6 overflow-x-auto no-scrollbar py-2">
+                
+                <!-- Product 1 -->
+                <div class="min-w-[200px] max-w-[200px] flex flex-col items-start border border-gray-100 dark:border-gray-700 p-3 rounded hover:shadow-lg transition">
+                    <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=300&q=80" class="w-full h-40 object-contain mb-2" alt="Karnay">
+                    <span class="bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded">-25% Chegirma</span>
+                    <p class="text-amazon_orange font-bold mt-2">$89.99 <span class="text-xs text-gray-400 line-through">$119.99</span></p>
+                    <p class="text-xs text-gray-700 dark:text-gray-300 mt-1 line-clamp-2">Simsiz Shovqinni Bosuvchi Quloqchin</p>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="min-w-[200px] max-w-[200px] flex flex-col items-start border border-gray-100 dark:border-gray-700 p-3 rounded hover:shadow-lg transition">
+                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=300&q=80" class="w-full h-40 object-contain mb-2" alt="Kamera">
+                    <span class="bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded">-40% Chegirma</span>
+                    <p class="text-amazon_orange font-bold mt-2">$299.00 <span class="text-xs text-gray-400 line-through">$499.00</span></p>
+                    <p class="text-xs text-gray-700 dark:text-gray-300 mt-1 line-clamp-2">Professionallar uchun Rasm Kamera</p>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="min-w-[200px] max-w-[200px] flex flex-col items-start border border-gray-100 dark:border-gray-700 p-3 rounded hover:shadow-lg transition">
+                    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=300&q=80" class="w-full h-40 object-contain mb-2" alt="Ko'zoynak">
+                    <span class="bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded">-15% Chegirma</span>
+                    <p class="text-amazon_orange font-bold mt-2">$45.00 <span class="text-xs text-gray-400 line-through">$55.00</span></p>
+                    <p class="text-xs text-gray-700 dark:text-gray-300 mt-1 line-clamp-2">Quyoshdan Saqlovchi Stilni Ko'zoynak</p>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="min-w-[200px] max-w-[200px] flex flex-col items-start border border-gray-100 dark:border-gray-700 p-3 rounded hover:shadow-lg transition">
+                    <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=300&q=80" class="w-full h-40 object-contain mb-2" alt="Krossovka">
+                    <span class="bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded">-30% Chegirma</span>
+                    <p class="text-amazon_orange font-bold mt-2">$70.00 <span class="text-xs text-gray-400 line-through">$100.00</span></p>
+                    <p class="text-xs text-gray-700 dark:text-gray-300 mt-1 line-clamp-2">Sport va Yugurish uchun Krossovka</p>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="min-w-[200px] max-w-[200px] flex flex-col items-start border border-gray-100 dark:border-gray-700 p-3 rounded hover:shadow-lg transition">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=300&q=80" class="w-full h-40 object-contain mb-2" alt="Soat">
+                    <span class="bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded">-50% Chegirma</span>
+                    <p class="text-amazon_orange font-bold mt-2">$120.00 <span class="text-xs text-gray-400 line-through">$240.00</span></p>
+                    <p class="text-xs text-gray-700 dark:text-gray-300 mt-1 line-clamp-2">Klassik Erkaklar Soati</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FEATURED BANNER SECTION -->
+        <div class="mt-6 mx-4 rounded-md overflow-hidden shadow-md">
+            <div class="bg-gradient-to-r from-blue-900 to-indigo-800 p-8 text-white flex flex-col md:flex-row items-center justify-between">
+                <div class="mb-4 md:mb-0">
+                    <span class="bg-amazon_yellow text-gray-900 font-bold px-3 py-1 text-xs rounded uppercase">Yangi Kelgan</span>
+                    <h2 class="text-3xl font-extrabold mt-2">Amazon Fire TV Edition</h2>
+                    <p class="text-gray-200 text-sm mt-1 max-w-lg">4K Ultra HD format, drayverlar va ovozli boshqaruv pulti bilan aqlli televizorlar tajribasi.</p>
+                </div>
+                <button class="bg-amazon_yellow hover:bg-amazon_yellow-hover text-gray-900 font-bold px-6 py-3 rounded-md transition shadow">
+                    Hozir Harid Qiling
+                </button>
+            </div>
+        </div>
+
+        <!-- HORIZONTAL PRODUCTS CAROUSEL 2 (Recommendations) -->
+        <div class="bg-white dark:bg-gray-800 p-5 mt-6 mx-4 rounded-md shadow-md">
+            <h2 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Siz uchun maxsus tavsiyalar</h2>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+                
+                <div class="p-2 border border-gray-100 dark:border-gray-700 rounded text-center">
+                    <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=250&q=80" class="w-full h-32 object-contain mb-2" alt="Kitob">
+                    <p class="text-xs font-semibold text-gray-800 dark:text-gray-200 line-clamp-1">Badiiy Kitoblar</p>
+                    <p class="text-amazon_orange font-bold text-sm">$15.99</p>
+                </div>
+
+                <div class="p-2 border border-gray-100 dark:border-gray-700 rounded text-center">
+                    <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?auto=format&fit=crop&w=250&q=80" class="w-full h-32 object-contain mb-2" alt="Poyabzal">
+                    <p class="text-xs font-semibold text-gray-800 dark:text-gray-200 line-clamp-1">Charm Oyoq kiyim</p>
+                    <p class="text-amazon_orange font-bold text-sm">$85.00</p>
+                </div>
+
+                <div class="p-2 border border-gray-100 dark:border-gray-700 rounded text-center">
+                    <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=250&q=80" class="w-full h-32 object-contain mb-2" alt="Parfyum">
+                    <p class="text-xs font-semibold text-gray-800 dark:text-gray-200 line-clamp-1">Parfyumeriya</p>
+                    <p class="text-amazon_orange font-bold text-sm">$62.50</p>
+                </div>
+
+                <div class="p-2 border border-gray-100 dark:border-gray-700 rounded text-center">
+                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=250&q=80" class="w-full h-32 object-contain mb-2" alt="Macbook">
+                    <p class="text-xs font-semibold text-gray-800 dark:text-gray-200 line-clamp-1">Ultra Noutbuk</p>
+                    <p class="text-amazon_orange font-bold text-sm">$1,299.00</p>
+                </div>
+
+                <div class="p-2 border border-gray-100 dark:border-gray-700 rounded text-center">
+                    <img src="https://images.unsplash.com/photo-1507764923504-cd90bfbd3192?auto=format&fit=crop&w=250&q=80" class="w-full h-32 object-contain mb-2" alt="Klaviatura">
+                    <p class="text-xs font-semibold text-gray-800 dark:text-gray-200 line-clamp-1">Mexanik Klaviatura</p>
+                    <p class="text-amazon_orange font-bold text-sm">$49.99</p>
+                </div>
+
+                <div class="p-2 border border-gray-100 dark:border-gray-700 rounded text-center">
+                    <img src="https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?auto=format&fit=crop&w=250&q=80" class="w-full h-32 object-contain mb-2" alt="Kamera">
+                    <p class="text-xs font-semibold text-gray-800 dark:text-gray-200 line-clamp-1">Eshik Qo'ng'irog'i</p>
+                    <p class="text-amazon_orange font-bold text-sm font-semibold">$39.00</p>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-amazon_blue text-white mt-12">
+        <!-- Back to Top Button -->
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="w-full bg-amazon_blue-light py-3 text-sm text-center font-semibold hover:bg-gray-700 transition">
+            Yuqoriga qaytish
+        </button>
+
+        <!-- Footer Columns -->
+        <div class="max-w-[1200px] mx-auto py-10 px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+            <div>
+                <h3 class="font-bold text-base mb-3">Biz bilan tanishing</h3>
+                <ul class="space-y-2 text-gray-300 text-xs">
+                    <li><a href="#" class="hover:underline">Kompaniya haqida</a></li>
+                    <li><a href="#" class="hover:underline">Vakansiyalar</a></li>
+                    <li><a href="#" class="hover:underline">Press-relizlar</a></li>
+                    <li><a href="#" class="hover:underline">Amazon Fanlari</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold text-base mb-3">Biz bilan pul ishlang</h3>
+                <ul class="space-y-2 text-gray-300 text-xs">
+                    <li><a href="#" class="hover:underline">Amazonda mahsulot sotish</a></li>
+                    <li><a href="#" class="hover:underline">Hamkorlik dasturi</a></li>
+                    <li><a href="#" class="hover:underline">Brendingizni eliting</a></li>
+                    <li><a href="#" class="hover:underline">O'z kitobingizni nashr qiling</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold text-base mb-3">To'lov Usullari</h3>
+                <ul class="space-y-2 text-gray-300 text-xs">
+                    <li><a href="#" class="hover:underline">Amazon Visa Kartasi</a></li>
+                    <li><a href="#" class="hover:underline">Ballar bilan xarid qilish</a></li>
+                    <li><a href="#" class="hover:underline">Balansni to'ldirish</a></li>
+                    <li><a href="#" class="hover:underline">Valyuta konvertori</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold text-base mb-3">Yordam bera olamizmi?</h3>
+                <ul class="space-y-2 text-gray-300 text-xs">
+                    <li><a href="#" class="hover:underline">Buyurtmangiz holati</a></li>
+                    <li><a href="#" class="hover:underline">Yetkazib berish stavkalari</a></li>
+                    <li><a href="#" class="hover:underline">Qaytarish va almashtirish</a></li>
+                    <li><a href="#" class="hover:underline">Mijozlarni qo'llab-quvvatlash</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Copyright -->
+        <div class="border-t border-gray-700 py-6 text-center text-xs text-gray-400">
+            <p>© 1996-2026, Amazon.com, Inc. yoki uning sho''ba korxonalari (Amazon.uz Kloni)</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Dark Mode Switcher -->
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+
+        // Check stored theme preference
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        });
+    </script>
+</body>
+</html>
